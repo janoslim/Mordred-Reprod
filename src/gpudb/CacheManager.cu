@@ -43,8 +43,28 @@ CacheManager::CacheManager(size_t _cache_size, size_t _processing_size, size_t _
 	CubDebugExit(cudaMemset(gpuCache, 0, (cache_size) * sizeof(int)));
 	CubDebugExit(cudaMalloc((void**) &gpuProcessing, _processing_size * sizeof(uint64_t)));
 
+	printf ("(cache_size) * sizeof(int): %ld\n", (cache_size) * sizeof(int));
+	printf ("_processing_size * sizeof(uint64_t): %ld\n", _processing_size * sizeof(uint64_t));
+
 	cpuProcessing = (uint64_t*) malloc(_processing_size * sizeof(uint64_t));
-	CubDebugExit(cudaHostAlloc((void**) &pinnedMemory, _pinned_memsize * sizeof(uint64_t), cudaHostAllocDefault));
+	{   size_t free_byte ;
+        size_t total_byte ;
+        cudaError_t cuda_status = cudaMemGetInfo( &free_byte, &total_byte ) ;
+        if ( cudaSuccess != cuda_status ) {
+            printf("Error: cudaMemGetInfo fails, %s \n", cudaGetErrorString(cuda_status) );
+            exit(1);
+        }
+        double free_db = (double)free_byte ;
+        double total_db = (double)total_byte ;
+        double used_db = total_db - free_db ;
+        fprintf(stderr, "Memory %.1f / %.1f GB\n",
+                used_db/(1024*1024*1024), total_db/(1024*1024*1024) );
+        fflush(stdout);
+    }
+
+	printf ("_pinned_memsize * sizeof(uint64_t): %ld\n", _pinned_memsize * sizeof(uint64_t));
+	// CubDebugExit(cudaHostAlloc((void**) &pinnedMemory, _pinned_memsize * sizeof(uint64_t), cudaHostAllocDefault));
+	pinnedMemory = (uint64_t*) malloc (_pinned_memsize * sizeof(uint64_t));
 	gpuPointer = 0;
 	cpuPointer = 0;
 	pinnedPointer = 0;

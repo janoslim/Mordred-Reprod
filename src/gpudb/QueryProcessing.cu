@@ -882,7 +882,7 @@ QueryProcessing::profile() {
 }
 
 double
-QueryProcessing::processQuery() {
+QueryProcessing::processQuery(bool printall) {
 
   SETUP_TIMING();
   float time;
@@ -933,21 +933,22 @@ QueryProcessing::processQuery() {
     cgp->gpu_to_cpu_total += cgp->gpu_to_cpu[sg];
   }
 
-  if (verbose) {
+  if (printall) 
+  {
     cout << "Result:" << endl;
     int res_count = 0;
     for (int i=0; i< params->total_val; i++) {
       if (params->res[6*i+4] != 0) {
-        cout << params->res[6*i] << " " << params->res[6*i+1] << " " << params->res[6*i+2] << " " << params->res[6*i+3] << " " << reinterpret_cast<unsigned long long*>(&params->res[6*i+4])[0]  << endl;
+        // cout << params->res[6*i] << " " << params->res[6*i+1] << " " << params->res[6*i+2] << " " << params->res[6*i+3] << " " << reinterpret_cast<unsigned long long*>(&params->res[6*i+4])[0]  << endl;
         res_count++;
       }
     }
-    cout << "Res count = " << res_count << endl;
-    cout << "Query Execution Time: " << time << endl;
-    cout << "CPU Time: " << cgp->cpu_time_total << endl;
-    cout << "GPU Time: " << cgp->gpu_time_total << endl;
-    cout << "Transfer Time: " << cgp->transfer_time_total << endl;
-    cout << "Malloc Time: " << cgp->malloc_time_total << endl;
+    cout << "RESULT_ query " << query << "Res count = " << res_count << endl;
+    cout << "RESULT_ query " << query << "Query Execution Time: " << time << endl;
+    cout << "RESULT_ query " << query << "CPU Time: " << cgp->cpu_time_total << endl;
+    cout << "RESULT_ query " << query << "GPU Time: " << cgp->gpu_time_total << endl;
+    cout << "RESULT_ query " << query << "Transfer Time: " << cgp->transfer_time_total << endl;
+    cout << "RESULT_ query " << query << "Malloc Time: " << cgp->malloc_time_total << endl;
     cout << endl;
   }
 
@@ -1023,12 +1024,12 @@ QueryProcessing::processQuery2() {
         res_count++;
       }
     }
-    cout << "Res count = " << res_count << endl;
-    cout << "Query Execution Time: " << time << endl;
-    cout << "CPU Time: " << cgp->cpu_time_total << endl;
-    cout << "GPU Time: " << cgp->gpu_time_total << endl;
-    cout << "Transfer Time: " << cgp->transfer_time_total << endl;
-    cout << "Malloc Time: " << cgp->malloc_time_total << endl;
+    cout << "RESULT_ Res count = " << res_count << endl;
+    cout << "RESULT_ Query Execution Time: " << time << endl;
+    cout << "RESULT_ CPU Time: " << cgp->cpu_time_total << endl;
+    cout << "RESULT_ GPU Time: " << cgp->gpu_time_total << endl;
+    cout << "RESULT_ Transfer Time: " << cgp->transfer_time_total << endl;
+    cout << "RESULT_ Malloc Time: " << cgp->malloc_time_total << endl;
     cout << endl;
   }
 

@@ -88,7 +88,8 @@ CPUGPUProcessing::switch_device_fact(int** &off_col, int** &h_off_col, int* &d_t
 
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (off_col[i] != NULL) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &h_off_col[i], *h_total * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &h_off_col[i], *h_total * sizeof(int), cudaHostAllocDefault));
+        if (!custom) h_off_col[i] = (int*) malloc(*h_total * sizeof(int));
         if (custom) h_off_col[i] = (int*) cm->customCudaHostAlloc<int>(*h_total);
       }
     }
@@ -163,7 +164,8 @@ CPUGPUProcessing::switch_device_dim(int* &d_off_col, int* &h_off_col, int* &d_to
     CubDebugExit(cudaStreamSynchronize(stream));
     gpu_to_cpu[sg] += (1 * sizeof(int));
 
-    if (!custom) CubDebugExit(cudaHostAlloc((void**) &h_off_col, *h_total * sizeof(int), cudaHostAllocDefault));
+    // if (!custom) CubDebugExit(cudaHostAlloc((void**) &h_off_col, *h_total * sizeof(int), cudaHostAllocDefault));
+    if (!custom) h_off_col = (int*) malloc(*h_total * sizeof(int));
     if (custom) h_off_col = (int*) cm->customCudaHostAlloc<int>(*h_total);
   }
 
@@ -435,7 +437,8 @@ CPUGPUProcessing::call_pfilter_probe_CPU(QueryParams* params, int** &h_off_col, 
     output_estimate = SEGMENT_SIZE * qo->segment_group_count[0][sg] * output_selectivity;
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (i == 0 || qo->joinCPUcheck[i]) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        if (!custom) off_col_out[i] = (int*) malloc(output_estimate * sizeof(int));
         if (custom) off_col_out[i] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
       }
     }
@@ -444,7 +447,8 @@ CPUGPUProcessing::call_pfilter_probe_CPU(QueryParams* params, int** &h_off_col, 
     output_estimate = *h_total * output_selectivity;
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (h_off_col[i] != NULL || i == 0 || qo->joinCPUcheck[i]) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        if (!custom) off_col_out[i] = (int*) malloc(output_estimate * sizeof(int));
         if (custom) off_col_out[i] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
       }
     }
@@ -907,7 +911,8 @@ CPUGPUProcessing::call_probe_CPU(QueryParams* params, int** &h_off_col, int* h_t
     output_estimate = SEGMENT_SIZE * qo->segment_group_count[0][sg] * output_selectivity;
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (i == 0 || qo->joinCPUcheck[i]) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        if (!custom) off_col_out[i] = (int*)malloc(output_estimate * sizeof(int));
         if (custom) off_col_out[i] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
       }
     }
@@ -916,7 +921,8 @@ CPUGPUProcessing::call_probe_CPU(QueryParams* params, int** &h_off_col, int* h_t
     output_estimate = *h_total * output_selectivity;
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (h_off_col[i] != NULL || i == 0 || qo->joinCPUcheck[i]) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        if (!custom) off_col_out[i] = (int*)malloc(output_estimate * sizeof(int));
         if (custom) off_col_out[i] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
       }
     }
@@ -1152,7 +1158,8 @@ CPUGPUProcessing::call_pfilter_CPU(QueryParams* params, int** &h_off_col, int* h
 
   if (h_off_col == NULL) {
     output_estimate = SEGMENT_SIZE * qo->segment_group_count[0][sg] * output_selectivity;
-    if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[0], output_estimate * sizeof(int), cudaHostAllocDefault));
+    // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[0], output_estimate * sizeof(int), cudaHostAllocDefault));
+    if (!custom) off_col_out[0] = (int*)malloc(output_estimate * sizeof(int));
     if (custom) off_col_out[0] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
   } else {
     assert(filter_col[0] == NULL);
@@ -1161,7 +1168,8 @@ CPUGPUProcessing::call_pfilter_CPU(QueryParams* params, int** &h_off_col, int* h
     output_estimate = *h_total * output_selectivity;
     for (int i = 0; i < cm->TOT_TABLE; i++) {
       if (h_off_col[i] != NULL || i == 0) {
-        if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        // if (!custom) CubDebugExit(cudaHostAlloc((void**) &off_col_out[i], output_estimate * sizeof(int), cudaHostAllocDefault));
+        if (!custom) off_col_out[i] = (int*)malloc(output_estimate * sizeof(int));
         if (custom) off_col_out[i] = (int*) cm->customCudaHostAlloc<int>(output_estimate);
       }
     }

@@ -59,7 +59,7 @@ public:
 
   void updateStatsQuery();
 
-  double processQuery();
+  double processQuery(bool printall);
 
   double processQuery2();
 

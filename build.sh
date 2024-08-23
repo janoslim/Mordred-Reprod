@@ -1,0 +1,12 @@
+make clean;
+make setup;
+make bin/gpudb/main.bin SF=50 -j;
+mv bin/gpudb/main.bin main50.bin;
+make clean;
+make setup;
+make bin/gpudb/main.bin SF=100 -j;
+mv bin/gpudb/main.bin main100.bin;
+make clean;
+make setup;
+make bin/gpudb/main.bin SF=200 -j;
+mv bin/gpudb/main.bin main200.bin;

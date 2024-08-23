@@ -88,8 +88,8 @@ int main() {
 			cout << "Input Query: ";
 			cin >> query;
 			QueryProcessing* qp = new QueryProcessing(cgp, stoi(query), verbose);
-			qp->processQuery();
-			time1 = qp->processQuery();
+			qp->processQuery(false);
+			time1 = qp->processQuery(false);
 			qp->processQuery2();
 			time2 = qp->processQuery2();
 			if (time1 <= time2) time += time1;
@@ -101,7 +101,7 @@ int main() {
 			QueryProcessing* qp = new QueryProcessing(cgp, 11, verbose);
 			for (int i = 0; i < 100; i++) {
 				qp->generate_rand_query();
-				time1 = qp->processQuery();
+				time1 = qp->processQuery(false);
 				time2 = qp->processQuery2();
 				if (time1 <= time2) time += time1;
 				else time += time2;

@@ -7,40 +7,34 @@
 
 using namespace std;
 
-#define SF 40
+// #define SF 200
 
-#define BASE_PATH "/home/ubuntu/Implementation-GPUDB/test/ssb/data/"
+#define BASE_PATH "/mnt/hdd/Mordred/test/ssb/data/"
 
-#if SF == 1
-#define DATA_DIR BASE_PATH "s1_columnar/"
-#define LO_LEN 6001171
-//#define LO_LEN 1000
-#define P_LEN 200000
-#define S_LEN 2000
-#define C_LEN 30000
-#define D_LEN 2556
-#elif SF == 10
-#define DATA_DIR BASE_PATH "s10_columnar/"
-#define LO_LEN 59986214
-#define P_LEN 800000
-#define S_LEN 20000
-#define C_LEN 300000
-#define D_LEN 2556
-#elif SF == 20
-#define DATA_DIR BASE_PATH "s20_columnar/"
-#define LO_LEN 119994746
-#define P_LEN 1000000
-#define S_LEN 40000
-#define C_LEN 600000
-#define D_LEN 2556
-#elif SF == 40
-#define DATA_DIR BASE_PATH "s40_columnar/"
-#define LO_LEN 240012412
+#if SF == 50
+#define DATA_DIR BASE_PATH "s50_columnar/"
+#define LO_LEN 300005884
 #define P_LEN 1200000
-#define S_LEN 80000
-#define C_LEN 1200000
+#define S_LEN 100000
+#define C_LEN 1500000
+#define D_LEN 2556
+#elif SF == 100
+#define DATA_DIR BASE_PATH "s100_columnar/"
+#define LO_LEN 600038145
+#define P_LEN 1400000
+#define S_LEN 200000
+#define C_LEN 3000000
+#define D_LEN 2556
+#elif SF == 200
+#define DATA_DIR BASE_PATH "s200_columnar/"
+#define LO_LEN 1200018603
+#define P_LEN 1600000
+#define S_LEN 400000
+#define C_LEN 6000000
 #define D_LEN 2556
 #endif
+
+
 
 
 

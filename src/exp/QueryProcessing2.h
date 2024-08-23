@@ -51,7 +51,7 @@ public:
 
   void updateStatsQuery();
 
-  double processQuery();
+  double processQuery(false);
 
   double processQuery2();
 
@@ -1173,7 +1173,7 @@ QueryProcessing::processOnDemand() {
 
 
 double
-QueryProcessing::processQuery() {
+QueryProcessing::processQuery(false) {
 
   cudaEvent_t start, stop;   // variables that holds 2 events 
   float time;
