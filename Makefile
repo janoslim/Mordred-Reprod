@@ -110,7 +110,7 @@ INC = includes
 SF=${SF}
 
 CUB_DIR = cub/
-INCLUDES = -I$(CUB_DIR) -I$(CUB_DIR)test -I. -I$(INC)
+INCLUDES = -I$(CUB_DIR) -I$(CUB_DIR)test -I. -I$(INC)  -DSF=${SF}
 
 CFLAGS = -O3 -march=native -std=c++14 -ffast-math -g
 LDFLAGS = -ltbb -L/usr/local/lib/

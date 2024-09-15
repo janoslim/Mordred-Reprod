@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
   cout << "Loaded Column " << col_name << endl;
 
   ofstream myfile;
-  myfile.open ("/home/ubuntu/Mordred/test/ssb/data/s" + sf + "_columnar/" + col_name + "minmax");
+  myfile.open ("/mnt/hdd2/ssb-dbgen-" + sf + "/transformed/" + col_name + "minmax");
 
   int total_segment = ((len + SEGMENT_SIZE - 1)/SEGMENT_SIZE);
 

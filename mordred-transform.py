@@ -16,6 +16,7 @@ class cd:
 
 
 linecounts = {}
+linecounts[20] = 119994608
 linecounts[40] = 240012290
 linecounts[60] = 360011594
 linecounts[80] = 480025129
@@ -36,7 +37,7 @@ def transform(scale_factor):
         os.system('./loader --lineorder %s/lineorder.tbl --ddate %s/date.tbl --customer %s/customer.tbl.p --supplier %s/supplier.tbl.p --part %s/part.tbl.p --datadir %s' % (ip, ip, ip, ip, ip, op))
 
 def linecount(scale_factor):
-    path = '/mnt/hdd3/ssb-dbgen-{}/transformed/'.format (scale_factor) 
+    path = '/mnt/hdd3/ssb-dbgen-{}/'.format (scale_factor) 
     with cd(path):
         os.system('wc -l lineorder.tbl')
         os.system('wc -l part.tbl')

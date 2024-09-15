@@ -1,20 +1,15 @@
-SF=1
+SF=$1
 
 # Make sure encoder is using right scale factor
-bin=bin/gpudb/minmax
-binsort=bin/gpudb/minmaxsort
+bin=./minmax_$1.bin
+binsort=./minmaxsort_$1.bin
 
-LO_LEN=6001171
-P_LEN=200000
-S_LEN=2000
-C_LEN=30000
-D_LEN=2556
+LO_LEN=$2
+P_LEN=$3
+S_LEN=$4
+C_LEN=$5
+D_LEN=$6
 
-# arr=("lo_custkey" "lo_partkey" "lo_suppkey" "lo_orderdate" "lo_quantity" "lo_extendedprice" "lo_discount" "lo_revenue" "lo_supplycost" "lo_orderkey" "lo_linenumber" "lo_tax" "lo_ordtotalprice" "lo_commitdate")
-# for val in ${arr[*]}; do
-#  echo $val
-#  $bin $val $LO_LEN
-# done
 
 arr=("lo_custkey" "lo_partkey" "lo_suppkey" "lo_orderdate" "lo_quantity" "lo_extendedprice" "lo_discount" "lo_revenue" "lo_supplycost" "lo_orderkey" "lo_linenumber" "lo_tax" "lo_ordtotalprice" "lo_commitdate")
 for val in ${arr[*]}; do

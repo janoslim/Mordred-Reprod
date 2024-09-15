@@ -9,75 +9,77 @@ using namespace std;
 
 // #define SF 200
 
-#define BASE_PATH "/mnt/hdd/Mordred/test/ssb/data/"
-#define BASE_PATH_NEW "/mnt/hdd3/"
-
-#if SF == 40
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-40/transformed/"
+#if SF == 20
+#define DATA_DIR  "/mnt/hdd2/ssb-dbgen-20/transformed/"
+#define LO_LEN 119994608
+#define P_LEN 1000000 
+#define S_LEN 40000
+#define C_LEN 600000
+#define D_LEN 2556
+#elif SF == 40
+#define DATA_DIR "/mnt/hdd2/ssb-dbgen-40/transformed/"
 #define LO_LEN 240012290
 #define P_LEN 1200000 
 #define S_LEN 80000
 #define C_LEN 1200000
 #define D_LEN 2556
 #elif SF == 60
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-60/transformed/"
+#define DATA_DIR "/mnt/hdd2/ssb-dbgen-60/transformed/"
 #define LO_LEN 360011594
 #define P_LEN 1200000 
 #define S_LEN 120000
 #define C_LEN 1800000
 #define D_LEN 2556
 #elif SF == 80
-#define DATA_DIR BASE PATH_NEW "ssb-dbgen-80/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-80/transformed/"
 #define LO_LEN 480025129
 #define P_LEN 1400000 
 #define S_LEN 160000
 #define C_LEN 2400000
 #define D_LEN 2556
 #elif SF == 100
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-100/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-100/transformed/"
 #define LO_LEN 600037902
 #define P_LEN 1400000 
 #define S_LEN 200000
 #define C_LEN 3000000
 #define D_LEN 2556
 #elif SF == 120
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-120/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-120/transformed/"
 #define LO_LEN 720040849
 #define P_LEN 1400000 
 #define S_LEN 240000
 #define C_LEN 3600000
 #define D_LEN 2556
 #elif SF == 140
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-140/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-140/transformed/"
 #define LO_LEN 840042983
 #define P_LEN 1600000 
 #define S_LEN 280000
 #define C_LEN 4200000
 #define D_LEN 2556
 #elif SF == 160
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-160/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-160/transformed/"
 #define LO_LEN 960017389
 #define P_LEN 1600000 
 #define S_LEN 320000
 #define C_LEN 4800000
 #define D_LEN 2556
 #elif SF == 180
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-180/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-180/transformed/"
 #define LO_LEN 1080017552
 #define P_LEN 1600000 
 #define S_LEN 360000
 #define C_LEN 5400000
 #define D_LEN 2556
 #elif SF == 200
-#define DATA_DIR BASE_PATH_NEW "ssb-dbgen-200/transformed/"
+#define DATA_DIR "/mnt/hdd3/ssb-dbgen-200/transformed/"
 #define LO_LEN 1200018434
 #define P_LEN 1600000 
 #define S_LEN 400000
 #define C_LEN 6000000
 #define D_LEN 2556
 #endif
-
-
 
 
 

@@ -271,6 +271,7 @@ ColumnInfo::ColumnInfo(string _column_name, string _table_name, int _LEN, int _c
 	weight = 0;
 	seg_ptr = col_ptr;
 	total_segment = (LEN+SEGMENT_SIZE-1)/SEGMENT_SIZE;
+	printf("ColumnInfo: Column %s has %d entries total_segment %d\n", column_name.c_str(), LEN, total_segment);
 }
 
 Segment*
